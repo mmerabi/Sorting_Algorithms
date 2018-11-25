@@ -1,10 +1,10 @@
-/* This is a project that denotes the various sorting algorithms we have gone
+/* Michael Merabi #1460322
+ This is a project that denotes the various sorting algorithms we have gone
 over in class. Testing the sorts with various partitions and combinations.
 */
 
 
 import java.util.Random;
-
 
 class ArraySorts {
 
@@ -83,7 +83,7 @@ class ArraySorts {
     }
 
     //Fix this --- ####Done###
-    private static pair twoPivotPartition( int a[], int left, int right, int rightpivot, int leftpivot){
+    private static pair twoPivotPartition( int a[], int left, int right, int leftpivot, int rightpivot){
 
         int LPValue=a[leftpivot];
         int RPValue=a[rightpivot];
@@ -248,33 +248,50 @@ class ArraySorts {
     }
 
 
-    //3 partitions, 2 random pivots -- Driver
+    //Quicksort with 3 partitions, 2 random pivots -- Driver
     public static void QuickSort5(int a[], int n, int cutoff) {
         QuickSort5(a,0, n-1, cutoff);
         insertionSort(a,n);
     }
 
     public static void QuickSort5(int a[], int left, int right, int cutoff) {
-        //Selecting random pivot location
+        //randoms used for finding partitions
         Random rand = new Random();
         Random rand2 = new Random();
 
-        //recursive call of left side of partitioned array
+        int leftpivot, rightpivot, leftsize, rightsize, midsize;
+
         while ((right-left) + 1 >= cutoff){
-            int pivot = left+rand.nextInt((right-left)+1);
-            pair index = twoPointerPartition(a, left, right, pivot);
+            //Selecting random pivot location
+            rightpivot = left+rand.nextInt((right-left)+1);
+            leftpivot = left+rand2.nextInt((right-left)+1);
 
-            //split the partitioned array into two sides for comparisons
-            int ls = index.right - left;
-            int rs = right - index.left;
+            pair index = twoPivotPartition(a, left, right, leftpivot, rightpivot);
+            leftsize = index.right -left;
+            rightsize = right - index.left;
+            midsize = ((index.right-1) - (index.left+1));
 
-            //Recursive call of smaller sized partitioned array
-            if (ls < rs) {
-                QuickSort2(a, left, index.right, cutoff);
-                left = pivot+1;
+            //The partitioned array is in three sides, compare biggest and
+            //recursively start from two smallest partitions
+
+            //left is biggest partition
+            if(leftsize > rightsize && leftsize > midsize){
+                QuickSort5(a, index.left+1,index.right-1,cutoff);
+                QuickSort5(a,index.right+1,right,cutoff);
+                right = index.left-1;
+
+                //right is biggest partition
+            } else if (rightsize > leftsize  &&  rightsize > midsize){
+                QuickSort5(a,left,index.left-1,cutoff);
+                QuickSort5(a,index.left+1,index.right-1,cutoff);
+                left = index.right+1;
+
+                //mid is the biggest partition
             } else {
-                QuickSort2(a, index.left, right, cutoff);
-                right = pivot-1;
+                QuickSort5(a,left,index.left-1, cutoff);
+                QuickSort5(a,index.right+1,right, cutoff);
+                left = index.left+1;
+                right = index.right-1;
             }
         }
     }
