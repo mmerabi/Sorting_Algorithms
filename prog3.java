@@ -140,7 +140,7 @@ class ArraySorts {
         int check = right+1 - left;
         //recursive call of left side of partitioned array
 
-        while ((right-left) + 1 >= cutoff){
+        while (right-left + 1 >= cutoff){
             int pivot = left+rand.nextInt((right-left)+1);
             int index = bookPartition(a, left, right, pivot);
 
@@ -151,10 +151,10 @@ class ArraySorts {
             //Recursive call of smaller sized partitioned array
             if (ls < rs) {
                 QuickSort1(a, left, index-1, cutoff);
-                left = pivot+1;
+                left = index+1;
             } else {
                 QuickSort1(a, index+1, right, cutoff);
-                right = pivot-1;
+                right = index-1;
             }
         }
     }
@@ -171,7 +171,7 @@ class ArraySorts {
         Random rand = new Random();
 
         //recursive call of left side of partitioned array
-        while ((right-left) + 1 >= cutoff){
+        while ((right-left + 1) >= cutoff){
             int pivot = left+rand.nextInt((right-left)+1);
             pair index = twoPointerPartition(a, left, right, pivot);
 
@@ -182,10 +182,10 @@ class ArraySorts {
             //Recursive call of smaller sized partitioned array
             if (ls < rs) {
                 QuickSort2(a, left, index.right, cutoff);
-                left = pivot+1;
+                left = index.left;
             } else {
                 QuickSort2(a, index.left, right, cutoff);
-                right = pivot-1;
+                right = index.right;
             }
         }
 
@@ -300,61 +300,12 @@ class ArraySorts {
 
     // Quicksort + book partition with no insertion sort
     public static void AlmostQS1(int a[], int n, int cutoff){
-        AlmostQS1(a, 0, n-1, cutoff);
-    }
-
-    public static void AlmostQS1(int a[], int left, int right, int cutoff){
-        //Selecting random pivot location
-        Random rand = new Random();
-        int check = right+1 - left;
-        //recursive call of left side of partitioned array
-
-        while ((right-left) + 1 >= cutoff){
-            int pivot = left+rand.nextInt((right-left)+1);
-            int index = bookPartition(a, left, right, pivot);
-
-            //split the partitioned array into two sides for comparisons
-            int ls = index-1 - left;
-            int rs = right - index+1;
-
-            //Recursive call of smaller sized partitioned array
-            if (ls < rs) {
-                AlmostQS1(a, left, index-1, cutoff);
-                left = pivot+1;
-            } else {
-                QuickSort1(a, index+1, right, cutoff);
-                right = pivot-1;
-            }
-        }
+        QuickSort1(a, 0, n-1, cutoff);
     }
 
     //Quicksort + 2 pointer partition with no insertion sort
     public static void AlmostQS2(int a[], int n, int cutoff){
-        AlmostQS2(a, 0, n-1, cutoff);
-    }
-
-    public static void AlmostQS2(int a[], int left, int right, int cutoff){
-        //Selecting random pivot location
-        Random rand = new Random();
-
-        //recursive call of left side of partitioned array
-        while ((right-left) + 1 >= cutoff){
-            int pivot = left+rand.nextInt((right-left)+1);
-            pair index = twoPointerPartition(a, left, right, pivot);
-
-            //split the partitioned array into two sides for comparisons
-            int ls = index.right - left;
-            int rs = right - index.left;
-
-            //Recursive call of smaller sized partitioned array
-            if (ls < rs) {
-                AlmostQS2(a, left, index.right, cutoff);
-                left = pivot+1;
-            } else {
-                AlmostQS2(a, index.left, right, cutoff);
-                right = pivot-1;
-            }
-        }
+        QuickSort2(a, 0, n-1, cutoff);
     }
 
     public static int[] shiftup(int a[], int start, int end){
