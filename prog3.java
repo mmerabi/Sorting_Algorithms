@@ -17,7 +17,7 @@ class ArraySorts {
         arr[b] = temp;
     }
 
-    private static void insertionSort(int a[], int n) {  // #######Done###########
+    private static void insertionSort(int a[], int n) {
         for (int i = 1; i < n; ++i) {
             int current = a[i];
             int moveup = i - 1;
@@ -31,10 +31,14 @@ class ArraySorts {
         }
     }
 
-    private static pair twoPointerPartition(int a[], int left, int right, int pivot) { //#####Done#####
+    private static pair twoPointerPartition(int a[], int left, int right, int pivot) {
         int val = a[pivot];
         int leftp = left;
         int rightp = right;
+
+        //pointer on left and pointer on right move towards
+        //each other while stopping on values bigger/smaller
+        //than pivot and then swap. Stop when pointers cross
 
         while (leftp <= rightp) {
             while (a[leftp] < val) {
@@ -53,7 +57,7 @@ class ArraySorts {
         return new pair(leftp, rightp);
     }
 
-    private static int bookPartition(int a[], int left, int right, int pivot) { // ### Done ###
+    private static int bookPartition(int a[], int left, int right, int pivot) {
 
         boolean switcher = true;
 
@@ -66,9 +70,8 @@ class ArraySorts {
                 swap(a, LS + 1, FU);
                 LS++;
 
+             //This will increment on it's own
             } else if (a[FU] > a[left]) {
-                //do nothing because this will increment
-                //on it's own
 
             } else {
                 if (switcher) {
@@ -85,43 +88,47 @@ class ArraySorts {
     //Fix this --- ####Done###
     private static pair twoPivotPartition(int a[], int left, int right, int leftpivot, int rightpivot) {
 
-        int LPValue = a[leftpivot];
-        int RPValue = a[rightpivot];
+        boolean switcher = true;
 
-        int ls = left;
-        int fu = left + 1;
-        int fb = right;
+        int temp;
+        int FU = left + 1;
+        int LS = left;
+        int LB = right;
 
-        //Putting the random pivot in the right spot
-        swap(a, rightpivot, right);
-        //Putting the random pivot in the left spot.
-        swap(a, leftpivot, left);
+        swap(a,left,leftpivot);
+        swap(a,right,rightpivot);
 
-
-        if (a[left] > a[right]) {
-            swap(a, left, right);
+        if(a[left]>a[right]){
+            swap(a,a[left],a[right]);
         }
-
-        while (fu < fb) {
-
-            //Checking to see if smaller first
-            if (a[fu] < a[left]) {
-                ls++;
-                swap(a, ls, fu);
-
+        while(FU<LB){
+            if(a[FU]<a[left]){
+                LS++;
+                swap(a,a[FU],a[LS]);
+                FU++;
             }
-            //Check to see if bigger than right
-            else if (a[fu] > a[right]) {
-                fb--;
-                swap(a, fb, fu);
+            else if(a[FU]>a[right]){
+                LB--;
+                swap(a,a[FU],a[LB]);
             }
-
-            fu++;
+            else{
+                if (switcher) {
+                    if (a[left] == a[FU]) {
+                        LS++;
+                        swap(a,a[FU],a[LS]);
+                        FU++;
+                    }
+                }
+                else {
+                    FU++;
+                }
+                switcher = !switcher;
+            }
         }
-        swap(a, left, ls);
-        swap(a, right, fb);
+        swap(a,a[left],a[LS]);
+        swap(a,a[right],a[LB]);
 
-        return new pair(ls, fb);
+        return new pair(LS, LB);
     }
 
     //first quicksort - Book partition with a random pivot (Driver method)
