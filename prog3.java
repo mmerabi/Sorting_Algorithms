@@ -85,11 +85,9 @@ class ArraySorts {
     private static pair twoPivotPartition(int a[], int left, int right, int leftpivot, int rightpivot) {
 
         boolean toggle = true;
-        //Putting the random pivot in the right spot
+        //random pivot to the right & left side
         swap(a, rightpivot, right);
-        //Putting the random pivot in the left spot.
         swap(a, leftpivot, left);
-
 
         if (a[left] > a[right]) {
             swap(a, left, right);
@@ -101,17 +99,19 @@ class ArraySorts {
 
         while (fu < fb) {
 
-            //Checking to see if smaller first
+            //Check for smallest case first
             if (a[fu] < a[left]) {
                 swap(a, ls + 1, fu);
                 ls++;
                 fu++;
             }
 
-            //Check to see if bigger than right
+            //Now check for bigger than right side
             else if (a[fu] > a[right]) {
                 fb--;
                 swap(a, fu, fb);
+
+            //doesn't fall into the above
             } else {
                 if (toggle) {
                     if (a[fu] == a[ls]) {
@@ -130,7 +130,6 @@ class ArraySorts {
         swap(a, right, fb);
 
         return new pair(ls, fb);
-
     }
 
     //first quicksort - Book partition with a random pivot (Driver method)
