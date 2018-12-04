@@ -98,47 +98,48 @@ Java's QuickSort on the test sets runs in 1.141 seconds.
 
 
 Michael Merabi's QS: book partition, random pivot, cutoff=50
-    on all random values runs in 5.441 seconds.      Java Ratio = 1.20
+    on all random values runs in 5.441 seconds.      Java Ratio = 1.15
     on the test sets runs in 2.797 seconds.          Java Ratio = 2.45
 
 Michael Merabi's QS: 2ptr partition, random pivot, cutoff=50
     on all random values runs in 5.026 seconds.      Java Ratio = 1.11
-    on the test sets runs in 2.423 seconds.          Java Ratio = 2.12
+    on the test sets runs in 2.423 seconds.          Java Ratio = 2.08
 
 Michael Merabi's QS: book partition, lf pivot, cutoff=50
-    on all random values runs in 4.382 seconds.      Java Ratio = 0.97
+    on all random values runs in 4.382 seconds.      Java Ratio = 0.96
 
 Michael Merabi's QS: 2ptr partition, lf pivot, cutoff=50
     on all random values runs in 4.236 seconds.      Java Ratio = 0.93
 
 Michael Merabi's QS: 3 Partition, cutoff=50
     on all random values runs in 7.238 seconds.      Java Ratio = 1.60
-    on the test sets runs in 4.747 seconds.          Java Ratio = 4.16
+    on the test sets runs in 4.747 seconds.          Java Ratio = 4.05
 
 Michael Merabi's QS: book partition, random pivot, cutoff=2
     on all random values runs in 7.568 seconds.      Java Ratio = 1.67
-    on the test sets runs in 5.366 seconds.          Java Ratio = 4.70
+    on the test sets runs in 5.366 seconds.          Java Ratio = 4.45
 
 Michael Merabi's QS: 2ptr partition, random pivot, cutoff=2
     on all random values runs in 8.311 seconds.      Java Ratio = 1.84
-    on the test sets runs in 5.135 seconds.          Java Ratio = 4.50
+    on the test sets runs in 5.135 seconds.          Java Ratio = 4.43
 
 Michael Merabi's QS: book partition, lf pivot, cutoff=2
     on all random values runs in 4.983 seconds.      Java Ratio = 1.10
-    Michael Merabi's QS: 2ptr partition, lf pivot, cutoff=2
-    on all random values runs in 5.211 seconds.      Java Ratio = 1.15
+    
+Michael Merabi's QS: 2ptr partition, lf pivot, cutoff=2
+    on all random values runs in 5.211 seconds.      Java Ratio = 1.11
 
 Michael Merabi's QS: 3 Partition, cutoff=2
-    on all random values runs in 11.711 seconds.      Java Ratio = 2.59
-    on the test sets runs in 9.333 seconds.          Java Ratio = 8.17
+    on all random values runs in 11.711 seconds.      Java Ratio = 2.53
+    on the test sets runs in 9.333 seconds.          Java Ratio = 7.92
 
 Michael Merabi's Almost QS book partition, random pivot, cutoff=2
-    on all random values runs in 7.614 seconds.      Java Ratio = 1.68
-    on the test sets runs in 5.205 seconds.          Java Ratio = 4.56
+    on all random values runs in 7.614 seconds.      Java Ratio = 1.63
+    on the test sets runs in 5.205 seconds.          Java Ratio = 4.26
 
 Michael Merabi's Almost QS 2ptr partition, random pivot, cutoff=2
-    on all random values runs in 8.948 seconds.      Java Ratio = 1.98
-    on the test sets runs in 5.462 seconds.          Java Ratio = 4.78
+    on all random values runs in 8.948 seconds.      Java Ratio = 1.77
+    on the test sets runs in 5.462 seconds.          Java Ratio = 4.31
 
 Michael Merabi's Almost QS 3 Partition, random pivot, cutoff=2
     on all random values runs in 11.484 seconds.      Java Ratio = 2.54
@@ -149,11 +150,11 @@ Michael Merabi's Almost QS 3 Partition, random pivot, cutoff=2
     on the test sets runs in 8.938 seconds.          Java Ratio = 7.83
 
 Michael Merabi's HeapSortTD
-    on all random values runs in 20.328 seconds.      Java Ratio = 4.50
-    on the test sets runs in 7.019 seconds.          Java Ratio = 6.15
+    on all random values runs in 20.328 seconds.      Java Ratio = 4.23
+    on the test sets runs in 7.019 seconds.          Java Ratio = 5.84
 
 Michael Merabi's HeapSortBU
     on all random values runs in 19.610 seconds.      Java Ratio = 4.34
-    on the test sets runs in 6.612 seconds.          Java Ratio = 5.79
+    on the test sets runs in 6.612 seconds.          Java Ratio = 5.49
 
 Done testing Michael Merabi methods.
