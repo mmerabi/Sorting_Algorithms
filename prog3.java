@@ -3,7 +3,6 @@
 over in class. Testing the sorts with various partitions and combinations.
 */
 
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
@@ -202,7 +201,6 @@ class ArraySorts {
                 right = index.right;
             }
         }
-
     }
 
     //book's partition with pivot = a[lf] - Driver Method
@@ -322,65 +320,77 @@ class ArraySorts {
         QuickSort2(a, 0, n - 1, cutoff);
     }
 
+    //quicksort + 3 pivot partition with no insertion sort
     public static void AlmostQS5(int a[], int n, int cutoff) {
         QuickSort5(a, 0, n - 1, cutoff);
     }
+
 
     // heapsort with linear build heap
     public static void HeapSortBU(int a[], int n) {
     //requires trickle-down (building the heap)
 
-        for (int index = n-1; index >= 0; index--){
-            trickleDown(a, index, n);
+        for (int start = (n - 2) / 2; start > -1; start--)
+        {
+            trickleDown(a, start, n - 1);
         }
 
-       // if (a[0])
-
+        for (int end = n - 1; end > 0; end--)
+        {
+            int temp = a[end];
+            a[end] = a[0];
+            a[0] = temp;
+            trickleDown(a, 0, end - 1);
+        }
     }
 
     public static void HeapSortTD(int a[], int n) {
         //requires trickle-up (building the heap)
 
-        //check to see if parent is bigger than child
-        // when not, then save and shift
-        for (int child = 1; child < n; child++) {
-
-            // compare sizes here
-            if (a[child] > a[(child - 1) / 2]) {
-                int newP = child;
-                int save = a[newP];
-
-                // start shifting
-                while (save > a[(newP - 1) / 2] && newP > 0) {
-                    a[newP] = a[(newP - 1) / 2];
-                    newP = (newP - 1) / 2;
-                }
-
-                a[newP] = save;
-            }
+        for (int i = 0; i < n; i++)
+        {
+            trickleUp(a, 0, i);
         }
 
-        for (int i = n - 1; i >= 1; i--) {
-            // Move current max element to end
-            int temp = a[i];
-            a[i] = a[0];
+        for (int end = n - 1; end > 0; end--)
+        {
+            int temp = a[end];
+            a[end] = a[0];
             a[0] = temp;
-            trickleDown(a, i, 0);
+            trickleDown(a, 0, end - 1);
         }
     }
 
     private static void trickleDown(int[] a, int index, int n) {
+        int temp = a[index];
+        int newchild = index * 2 + 1;
 
-        //check to see if the item is a leaf, if it is then nothing needs to be done
-        int leafcheck = ((n/2)-1);
-        if (index > leafcheck){
 
+        if (newchild + 1 <= n && a[newchild] < a[newchild + 1]) {
+            newchild++;
         }
+        while ((index * 2 + 1) <= n && temp < a[newchild]) {
+            a[index] = a[newchild];
+            index = newchild;
+            newchild = index * 2 + 1;
+            if (newchild + 1 <= n && a[newchild] < a[newchild + 1]) {
+                newchild++;
+            }
+        }
+        a[index] = temp;
     }
 
     private static void trickleUp(int[] a, int root, int n) {
+        int parent = (n - 1) / 2;
+        int hold = a[n];
 
-
+        if (a[n] > a[parent]) {
+            while (n > root && hold > a[(n - 1) / 2]) {
+                a[n] = a[(n - 1) / 2];
+                n = (n - 1) / 2;
+            }
+            a[n] = hold;
+        }
     }
 
     public static String myName() {
