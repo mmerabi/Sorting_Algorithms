@@ -1,8 +1,3 @@
-/* Michael Merabi #1460322
- This is a project that denotes the various sorting algorithms we have gone
-over in class. Testing the sorts with various partitions and combinations.
-*/
-
 import java.util.Random;
 
 class ArraySorts {
@@ -382,10 +377,6 @@ class ArraySorts {
             }
             a[n] = hold;
         }
-    }
-
-    public static String myName() {
-        return "Michael Merabi";
     }
 }
 
